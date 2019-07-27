@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
   <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
   <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
   <title>Document</title>
@@ -12,12 +13,48 @@
 
   <div id="app"></div>
 
-  <script>
+  <script type="text/babel">
     class App extends React.Component {
+      state = {
+        name: 'Chris',
+        age: 24
+      }
+      handleClick1(e) {
+        //console.log(e.target);
+        console.log(this.state)
+      }
+      handleClick = (e) => {
+        console.log(this.state)
+      }
+      handleClick2 = (e) => {
+        this.setState ({
+          name: 'not Chris',
+          age: 2
+        });
+      }
+      handleMouseOver(e) {
+        console.log(e.target, e.pageX)
+      }
+      handleCopy(e) {
+        console.log('Try being original for once!')
+      }
       render() {
-        
+        return (
+          <div className="app-content">
+            <h1>This is an H1</h1>
+            <p>{ Math.random() * 10 }</p>
+            <p> My name is { this.state.name } and I am { this.state.age }.</p>
+            <button onClick={ this.handleClick1 }>This button does not work</button>
+            <button onClick={ this.handleClick }>This button works!</button>
+            <button onClick={ this.handleClick2 }>Modify state!</button>
+            <button onMouseOver={ this.handleMouseOver }>Hover me</button>
+            <p onCopy={ this.handleCopy }>What we think, we become</p>
+          </div>
+        )
       }
     }
+
+    ReactDOM.render(<App />, document.getElementById('app'));
   </script>
 
 </body>
