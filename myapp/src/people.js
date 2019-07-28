@@ -2,11 +2,20 @@ import React, { Component } from 'react';
 
 class People extends Component{
   render(){
+    // console.log(this.props);
+    const { people } = this.props;
+    const peopleList = people.map(people => {
+      return (
+        <div className="people" key={people.id}>
+          <div>Name: {people.name}</div>
+          <div>Age: {people.age}</div>
+          <div>Location: {people.location}</div>
+        </div>
+      )
+    })
     return(
-      <div className="people">
-        <div>Name: Chris</div>
-        <div>Age: 24</div>
-        <div>Location: Indiana</div>
+      <div className="people-list">
+        { peopleList}
       </div>
     )
   }
